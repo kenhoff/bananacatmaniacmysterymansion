@@ -1,0 +1,5 @@
+#!/bin/bash
+for i in `seq 1 10`;
+do
+	wget https://dl.dropboxusercontent.com/u/6603747/GGJ15/Barrel_$i.png
+done

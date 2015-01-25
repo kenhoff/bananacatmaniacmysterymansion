@@ -45,7 +45,9 @@ function preload () {
 	game.load.image("doorway", "Doorway.png")
 	game.load.image("mask", "Mask.png")
 	game.load.audio("thunderstorm", "GGJ2015 BCMMM - Rain & Thunder Loop (Low Pass).ogg")
-	game.load.audio("statue-grind", "GGJ2015 BCMMM - Statue Rotating.ogg")
+	game.load.audio("statue-grind", "GGJ2015 BCMMM - Statue Rotating Good.ogg")
+	game.load.audio("click-down", "GGJ2015 BCMMM - Door Handle Click.ogg")
+	game.load.audio("click-up", "GGJ2015 BCMMM - Door Shut.ogg")
 	return randomId = makeId();
 }
 function create () {
@@ -81,7 +83,8 @@ function create () {
 	thunderstorm.play("", 0, 1, true)
 
 	statueNoise = game.add.audio("statue-grind", 2)
-
+	clickUp = game.add.audio("click-up", 2) 
+	clickDown = game.add.audio("click-down", 2) 
 
 
 
@@ -90,18 +93,43 @@ function create () {
 	firebaseRef.child("bannister1").on("child_changed", function (childSnapshot) {
 //		console.log(childSnapshot.val())
 		bannister1["activated"] = childSnapshot.val()
+		if (childSnapshot.val() == true) {
+			clickUp.play()
+		}
+		if (childSnapshot.val() == false) {
+			clickDown.play()
+		}
+		
 	})
 	firebaseRef.child("bannister2").on("child_changed", function (childSnapshot) {
 //		console.log(childSnapshot.val())
 		bannister2["activated"] = childSnapshot.val()
+		if (childSnapshot.val() == true) {
+			clickUp.play()
+		}
+		if (childSnapshot.val() == false) {
+			clickDown.play()
+		}
 	})
 	firebaseRef.child("bannister3").on("child_changed", function (childSnapshot) {
 //		console.log(childSnapshot.val())
 		bannister3["activated"] = childSnapshot.val()
+		if (childSnapshot.val() == true) {
+			clickUp.play()
+		}
+		if (childSnapshot.val() == false) {
+			clickDown.play()
+		}
 	})
 	firebaseRef.child("bannister4").on("child_changed", function (childSnapshot) {
 //console.log(childSnapshot.val())
 		bannister4["activated"] = childSnapshot.val()
+		if (childSnapshot.val() == true) {
+			clickUp.play()
+		}
+		if (childSnapshot.val() == false) {
+			clickDown.play()
+		}
 	})
 
 
