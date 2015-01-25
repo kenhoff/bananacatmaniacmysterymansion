@@ -36,10 +36,8 @@ function preload () {
 
 	game.load.image("ladder", "Ladder.png")
 	
-	game.load.audio("thunderstorm", "GGJ2015 BCMMM - Rain & Thunder Loop (Low Pass).ogg")
+	game.load.audio("thunderstorm", "GGJ2015 BCMMM - Rain & Thunder Loop (Real Ultimate Low Pass).ogg")
 	game.load.audio("statue-grind", "GGJ2015 BCMMM - Statue Rotating Good.ogg")
-	game.load.audio("click-down", "GGJ2015 BCMMM - Door Handle Click.ogg")
-	game.load.audio("click-up", "GGJ2015 BCMMM - Door Shut.ogg")
 
 	game.load.audio("barrelSound1", "barrel-sounds/1 - G.ogg")
 	game.load.audio("barrelSound2", "barrel-sounds/8 - D.ogg")
@@ -78,9 +76,9 @@ var referenceTorch = {}
 function create () {
 
 
-	// too loud
-	//thunderstorm = game.add.audio("thunderstorm", 1, true)
-	//thunderstorm.play("", 0, 1, true)
+	thunderstorm = game.add.audio("thunderstorm", 1, true)
+	
+	thunderstorm.play("", 0, 0.40, true)
 
 	console.log("create");
 	game.add.sprite(0, 0, "background");
@@ -161,7 +159,7 @@ function create () {
 		return cursorDict[childSnapshot.key()].y = childSnapshot.val().y;
 	})
 
-	statueNoise = game.add.audio("statue-grind", 2)
+	statueNoise = game.add.audio("statue-grind", 1)
 
 	barrel1.events.onInputDown.add(clickBarrel, {barrelNumber: 1})
 	barrel2.events.onInputDown.add(clickBarrel, {barrelNumber: 2})
@@ -224,14 +222,14 @@ function checkBarrels () {
 	if (game.input.keyboard.isDown(Phaser.Keyboard.BACKWARD_SLASH)) {
 		console.log("cheater")
 		game.add.tween(ladder).to({y: 0}, 5000, Phaser.Easing.Linear.None, true)
-		statueNoise.play()
+		statueNoise.play("", 0, 1)
 	}
 
 	if (JSON.stringify(playerSequence) == JSON.stringify(correctSequence)) {
 		console.log("DINGDINGDING")
 		playerSequence = []
-		game.add.tween(ladder).to({y: 0}, 10000, Phaser.Easing.Linear.None, true)
-		statueNoise.play()
+		game.add.tween(ladder).to({y: 0}, 5000, Phaser.Easing.Linear.None, true)
+		statueNoise.play("", 0, 1)
 		
 	}
 
