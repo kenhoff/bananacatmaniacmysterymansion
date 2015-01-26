@@ -1,4 +1,4 @@
-var game = new Phaser.Game(800, 600, Phaser.AUTO, "body", {preload: preload, create: create, update: update})
+var game = new Phaser.Game(800, 600, Phaser.AUTO, "phaser", {preload: preload, create: create, update: update})
 
 var cursorDict = {}
 
@@ -228,6 +228,7 @@ function checkBarrels () {
 	if (JSON.stringify(playerSequence) == JSON.stringify(correctSequence)) {
 		console.log("DINGDINGDING")
 		playerSequence = []
+		firebaseRef.child("barrels").set({})
 		game.add.tween(ladder).to({y: 0}, 5000, Phaser.Easing.Linear.None, true)
 		statueNoise.play("", 0, 1)
 		

@@ -1,4 +1,4 @@
-var game = new Phaser.Game(800, 600, Phaser.AUTO, "body", {preload: preload, create: create, update: update})
+var game = new Phaser.Game(800, 600, Phaser.AUTO, "phaser", {preload: preload, create: create, update: update})
 
 var cursorDict = {}
 
@@ -25,7 +25,6 @@ function preload () {
 	game.load.image("lightningmask", "mansion/Lightning_mask.png")
 	
 	
-	game.load.audio("thunderstorm", "GGJ2015 BCMMM - Rain & Thunder Loop.ogg")
 	game.load.audio("music", "GGJ2015 - Banana Cat's Maniac Mystery Mansion Theme - Single Loop.ogg")
 	game.load.audio("dooropen", "GGJ2015 BCMMM - Big Ass Doors Squeaking.ogg")
 
@@ -56,8 +55,6 @@ function create () {
 		return cursorDict[childSnapshot.key()].y = childSnapshot.val().y;
 	})
 
-	thunderstorm = game.add.audio("thunderstorm", 1, true)
-	thunderstorm.play("", 0, 1, true)
 
 	game.add.audio("music", 1, true).play("", 0, 1, true)
 
